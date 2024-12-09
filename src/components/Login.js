@@ -3,7 +3,7 @@ import Header from "./Header";
 import {checkFormData} from "../utils/validate"
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from "firebase/auth";
 import {auth} from "../utils/firebase"
-import { useNavigate } from "react-router-dom";
+
 
 
 
@@ -13,7 +13,6 @@ const Login = ()=>{
     const email = useRef(null);
     const password = useRef(null);
     const name = useRef(null);
-    const navigate = useNavigate();
 
     const toggleSignInForm = ()=>{
         setIsSignInForm(!isSignInForm)
@@ -34,7 +33,6 @@ const Login = ()=>{
                     updateProfile(user, {
                         displayName: name.current?.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
                       }).then(() => {
-                        navigate("/browse");
 
                       }).catch((error) => {
                         setErrorMessage(error);
@@ -53,7 +51,6 @@ const Login = ()=>{
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
             .then((userCredential) => {
                 const user = userCredential.user;
-                navigate("/browse");
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -79,7 +76,7 @@ const Login = ()=>{
                 {!isSignInForm &&  <input ref={name} type="text" placeholder="Full Name" className="p-4 my-4 w-full rounded-md bg-gray-700"/>}
                 <input ref={email} type="text" placeholder="Email Address" className="p-4 my-4 w-full rounded-md bg-gray-700"/>
                 <input ref={password} type="password" placeholder="Password" className="p-4 my-4 w-full rounded-md bg-gray-700"/>
-                <button className="p-4 my-6 bg-red-600 w-full rounded-md" onClick={validateFormData}>
+                <button className="p-4 my-6 bg-red-600 w-full rounded-md " onClick={validateFormData}>
                     {isSignInForm ? "Sign In" : "Sign Up"}
                 </button>
                 <p className="py-2 cursor-pointer" onClick={toggleSignInForm}>
