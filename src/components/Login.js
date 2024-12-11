@@ -3,6 +3,7 @@ import Header from "./Header";
 import {checkFormData} from "../utils/validate"
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from "firebase/auth";
 import {auth} from "../utils/firebase"
+import { BG_LOGO } from "../utils/constants";
 
 
 
@@ -65,7 +66,7 @@ const Login = ()=>{
         <div>
             <Header />
             <div className="absolute">
-                <img src="https://assets.nflxext.com/ffe/siteui/vlv3/ce449112-3294-449a-b8d3-c4e1fdd7cff5/web/IN-en-20241202-TRIFECTA-perspective_0acfb303-6291-4ad1-806f-dda785f6295a_medium.jpg" alt="bg-logo"/>
+                <img src={BG_LOGO} alt="bg-logo"/>
             </div>
             
             <form onClick={(e)=>{e.preventDefault()}} className="absolute  bg-black bg-opacity-80 m-4 py-6 px-8 w-2/5 min-w-[30%] max-w-[30%] my-32 mx-auto left-0 right-0 text-white rounded-lg">
