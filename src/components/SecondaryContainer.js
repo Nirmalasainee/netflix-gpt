@@ -1,7 +1,13 @@
+import MovieListContainer from "./MovieListContainer";
 
 const SecondaryContainer = ()=>{
     return (
-        <div></div>
+        <div>
+            <MovieListContainer title={"Popular Movies"}/>
+            <MovieListContainer title={"Trending Movies"}/>
+            <MovieListContainer title={"NowPlaying Movies"}/> 
+            <MovieListContainer title={"Horror Movies"}/>
+        </div>
     )
 }
 
