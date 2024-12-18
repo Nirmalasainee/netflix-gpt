@@ -4,21 +4,30 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {addUser, removeUser} from "../utils/userSlice"
 import { useEffect } from "react";
-import { LOGO } from "../utils/constants";
-
+import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
+import {toggleGptSearchView} from "../utils/gptSlice"
+import {changeLanguage} from "../utils/configSlice"
 
 const Header = ()=>{
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector((store)=> store.user)
-
+    const showGptSearch = useSelector(store => store.gpt.showGptSearch);
     const handleSignOut = ()=>{
         signOut(auth).then(() => {
         }).catch((error) => {
             navigate("/error");
         });
     }
-  
+    
+    const handleGPTSearch = ()=>{
+        dispatch(toggleGptSearchView());
+    }
+    
+    const handleLanguageChange = (e) =>{
+        dispatch(changeLanguage(e.target.value));
+    }
+
     useEffect(() =>{
         const unsbscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -40,8 +49,15 @@ const Header = ()=>{
             <img className="w-52 px-8 py-2 "
             src={LOGO} alt="logo" />
 
-            { user && (<div className=" py-6">
-                <button onClick={handleSignOut} className="text-white font-bold ">Sign Out</button>
+            { user && (
+            <div className="flex py-4">
+                {showGptSearch && <select className="p-2 m-2 bg-gray-300 rounded-md" onChange={handleLanguageChange}>
+                    {SUPPORTED_LANGUAGES.map(lang => <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>)}
+                </select>}
+                <button onClick={handleGPTSearch} className="text-white p-2 m-2 bg-blue-700 rounded-md">
+                    {showGptSearch ? "Home" : "GPT Search"}
+                </button>
+                <button onClick={handleSignOut} className="text-white font-bold px-6">Sign Out</button>
             </div>
             )}
         </div>

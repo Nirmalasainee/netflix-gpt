@@ -7,6 +7,7 @@ const MovieListContainer = ({title}) =>{
     usePopularMovies();
     const popularMovies = useSelector((store) =>store.movie);
     const movieList = popularMovies.addPopularMovies;
+
     return (
         <div className=" w-full px-6 bg-black">
             <h1 className="text-white text-xl md:text-xl font-semibold py-2">{title}</h1>
