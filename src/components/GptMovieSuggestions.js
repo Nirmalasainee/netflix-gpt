@@ -9,7 +9,6 @@ const GptMovieSuggestions = ()=>{
 
     return <div className="p-4 bg-black text-white">
         <div>
-            <h1></h1>
             {movieNames.map((movieName, index) =>  (<MovieContainer key={movieName} poster_path={movieName.poster_path} />))}    
         </div>
     </div>

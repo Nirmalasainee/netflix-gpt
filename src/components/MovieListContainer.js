@@ -9,10 +9,10 @@ const MovieListContainer = ({title}) =>{
     const movieList = popularMovies.addPopularMovies;
 
     return (
-        <div className=" w-full px-6 bg-black">
+        <div className="w-full px-6">
             <h1 className="text-white text-xl md:text-xl font-semibold py-2">{title}</h1>
-            <div className="flex overflow-x-scroll">
-                <div className=" bg-transparent flex relative z-20  space-x-4">
+            <div className=" flex overflow-x-scroll ">
+                <div className=" bg-transparent flex relative z-20 ">
                     {movieList && movieList.map((movie) => (<MovieContainer key={movie.id} poster_path={movie.poster_path} />))}
                 </div>
             </div>

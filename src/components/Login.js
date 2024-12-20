@@ -63,15 +63,15 @@ const Login = ()=>{
     }
 
     return (
-        <div>
+        <div className="">
             <Header />
-            <div className="absolute">
-                <img src={BG_LOGO} alt="bg-logo"/>
+            <div className="absolute top-0 left-0 w-full h-full object-cover"> 
+                <img src={BG_LOGO} alt="bg-logo" className="w-full h-full object-cover" />
             </div>
             
-            <form onClick={(e)=>{e.preventDefault()}} className="absolute  bg-black bg-opacity-80 m-4 py-6 px-8 w-2/5 min-w-[30%] max-w-[30%] my-32 mx-auto left-0 right-0 text-white rounded-lg">
+            <form onClick={(e)=>{e.preventDefault()}} className="absolute  bg-black bg-opacity-80 md:m-4 py-6 px-8 md:w-2/5 md:min-w-[30%] md:max-w-[30%] md:my-32 md:mx-auto m-4 left-0 right-0 text-white rounded-lg">
                 <p className="text-red-600">{errorMessage}</p>
-                <h1 className="font-bold text-3xl py-4">
+                <h1 className="font-bold md:text-3xl text-lg md:py-4 py-2">
                     {isSignInForm ? "Sign In" : "Sign Up"}
                 </h1>
                 {!isSignInForm &&  <input ref={name} type="text" placeholder="Full Name" className="p-4 my-4 w-full rounded-md bg-gray-700"/>}
