@@ -5,7 +5,7 @@ export const API_OPTIONS = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer ' + REACT_APP_TMDB_API
+      Authorization: 'Bearer ' + process.env.REACT_APP_TMDB_API
     }
 };
 
@@ -13,4 +13,4 @@ export const IMG_URL = "https://image.tmdb.org/t/p/w200/";
 
 export const SUPPORTED_LANGUAGES = [{identifier: "en", name: "English"},{identifier: "hindi", name: "Hindi"},{identifier: "spanish", name: "Spanish"} ]
 
-export const OPENAI_KEY = REACT_APP_OPENAI_KEY
+export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;

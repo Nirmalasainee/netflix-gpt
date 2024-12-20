@@ -7,14 +7,22 @@ const GptSearchBar = () =>{
     const langKey = useSelector(store => store.config.lang)
     const searchText = useRef(null);
 
-    const handleGptSearchClick = async ()=>{
-        const gptResult = await openai.chat.completions.create({
-            messages: [{ role: 'user', content: 'Say this is a test' }],
+    const handleGptSearchClick = async () => {
+        try {
+          const gptResult = await openai.chat.completions.create({
+            messages: [{ role: 'user', content: searchText.current.value }],
             model: 'gpt-3.5-turbo',
-        });
-        console.log(gptResult.choices);
-    }
-
+          });
+          
+        } catch (error) {
+          if (error.response && error.response.data && error.response.data.code === 'insufficient_quota') {
+            console.error('Error: You have exceeded your API usage quota. Please check your plan and billing details.');
+          } else {
+            console.error('An error occurred:', error);
+          }
+        }
+    };
+      
 
     return <div className="pt-[8%] flex justify-center">
         <form className=" w-1/2 bg-black grid grid-cols-12" onSubmit={(e)=>e.preventDefault()}>
